@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js';
 
+let texture = null;
 let bg = null;
 
 export default class Scene extends PIXI.Container {
@@ -7,7 +8,8 @@ export default class Scene extends PIXI.Container {
   constructor(props) {
     super(props);
 
-    bg = PIXI.Sprite.from('jazzbar.jpg');
+    texture = PIXI.Texture.from('jazzbar.jpg');
+    bg = PIXI.Sprite.from(texture);
     this.addChild(bg);
 
     let cat = PIXI.Sprite.from('cat.jpg');
@@ -15,10 +17,9 @@ export default class Scene extends PIXI.Container {
   }
 
   resize() {
-    var ratio = window.innerWidth / bg.width;
-    console.log(bg.width);
-    bg.scale.set(1, 1);
-    console.log(ratio);
+    console.log(bg);
+    var ratio = Math.max(window.innerWidth / texture.width, window.innerHeight / texture.height);
+    bg.scale.set(ratio, ratio);
   }
 
 }
