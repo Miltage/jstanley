@@ -17,8 +17,7 @@ export default class Scene extends PIXI.Container {
   }
 
   resize() {
-    console.log(bg);
-    var ratio = Math.max(window.innerWidth / texture.width, window.innerHeight / texture.height);
+    var ratio = Math.max(1280 / texture.width, 720 / texture.height);
     bg.scale.set(ratio, ratio);
   }
 

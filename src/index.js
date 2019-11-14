@@ -18,8 +18,20 @@ const app = new PIXI.Application({ resizeTo: window });
 // can then insert into the DOM
 document.body.appendChild(app.view);
 
+const logicalWidth = 1280;
+const logicalHeight = 720;
+
 const resize = () => {
+  var scaleFactor = Math.min(
+    window.innerWidth / logicalWidth,
+    window.innerHeight / logicalHeight
+  );
+  
   scene.resize();
+
+  app.stage.scale.set(scaleFactor);
+  app.stage.y = window.innerHeight/2 - app.stage.height/2;
+  app.stage.x = window.innerWidth/2 - app.stage.width/2;
 };
 
 window.addEventListener('resize', resize, false);
