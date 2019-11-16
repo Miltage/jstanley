@@ -26,6 +26,7 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
+    "adaptive-scale": "^1.0.0",
     "howler": "^2.1.2",
     "pixi.js": "^5.2.0"
   }

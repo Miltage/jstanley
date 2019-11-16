@@ -1,5 +1,6 @@
 
 import * as PIXI from 'pixi.js';
+import {POLICY, Size, getScaledRect} from 'adaptive-scale/lib-esm';
 import {Howl, Howler} from 'howler';
 import Scene from './Scene.js';
 
@@ -18,20 +19,32 @@ const app = new PIXI.Application({ resizeTo: window });
 // can then insert into the DOM
 document.body.appendChild(app.view);
 
-const logicalWidth = 1280;
-const logicalHeight = 720;
+const logicalWidth = 1024;
+const logicalHeight = 680;
 
 const resize = () => {
-  var scaleFactor = Math.min(
-    window.innerWidth / logicalWidth,
-    window.innerHeight / logicalHeight
-  );
-  
-  scene.resize();
 
-  app.stage.scale.set(scaleFactor);
-  app.stage.y = window.innerHeight/2 - app.stage.height/2;
-  app.stage.x = window.innerWidth/2 - app.stage.width/2;
+  let options = {
+    // window, canvas or any other thing
+    container: new Size(window.innerWidth, window.innerHeight),
+    // some dependent size. image, figure etc.
+    target: new Size(logicalWidth, logicalHeight),
+    // policy is optional. default is null
+    policy: POLICY.ShowAll, // null | ExactFit | NoBorder | FullHeight | FullWidth | ShowAll
+  };
+
+  // calculate new rectangle
+  let rect = getScaledRect(options);
+
+  // apply calculated rectangle
+  // horizontal center inside a window
+  app.stage.x = rect.x;
+  // vertical center inside a window
+  app.stage.y = rect.y;
+  // new scaled width
+  app.stage.width = rect.width;
+  // new scaled height
+  app.stage.height = rect.height;
 };
 
 window.addEventListener('resize', resize, false);
