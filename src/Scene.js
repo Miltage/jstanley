@@ -12,7 +12,9 @@ export default class Scene extends PIXI.Container {
     bg = PIXI.Sprite.from(texture);
     this.addChild(bg);
 
-    let cat = PIXI.Sprite.from('cat.jpg');
+    let cat = PIXI.Sprite.from('cat.png');
+    cat.x = window.innerWidth;
+    cat.y = 0;
     this.addChild(cat);
   }
 

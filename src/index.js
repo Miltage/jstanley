@@ -37,7 +37,7 @@ const resize = () => {
 window.addEventListener('resize', resize, false);
 
 PIXI.Loader.shared
-  .add('cat.jpg')
+  .add('cat.png')
   .add('jazzbar.jpg')
   .load(onAssetsLoaded)
 
