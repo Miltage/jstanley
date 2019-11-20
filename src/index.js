@@ -11,7 +11,9 @@ var song = new Howl({
   loop: true
 });
 
-//song.play();
+song.play();
+var context = new AudioContext();
+context.resume();
 
 let scene = null;
 

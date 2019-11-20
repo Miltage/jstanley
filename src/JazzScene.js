@@ -24,7 +24,7 @@ export default class JazzScene extends Scene {
 
     this.moveCat();
 
-    new Between(-20, 20).time(600)
+    new Between(-20, 20).time(580)
       .easing(Between.Easing.Cubic.InOut)
       .loop('bounce')
       .on('update', (value) => {
