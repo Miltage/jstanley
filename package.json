@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "adaptive-scale": "^1.0.0",
+    "between.js": "^0.1.2-fix.2",
     "howler": "^2.1.2",
     "pixi.js": "^5.2.0"
   }

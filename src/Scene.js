@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import Between from 'between.js';
 
 let texture = null;
 let bg = null;
@@ -16,11 +17,11 @@ export default class Scene extends PIXI.Container {
     cat.x = this.width/2 - cat.width/2;
     cat.y = this.height/2 - cat.height/2;
     this.addChild(cat);
-  }
 
-  resize() {
-    var ratio = Math.max(1280 / texture.width, 720 / texture.height);
-    bg.scale.set(ratio, ratio);
+    new Between(100, 500).time(6000)
+      .on('update', (value) => {
+        cat.x = value;
+      });
   }
 
 }
