@@ -17,12 +17,11 @@ export default class JazzScene extends Scene {
 
     cat = PIXI.Sprite.from('cat.png');
     cat.anchor.set(0.5);
-    cat.x = this.width/2;
+    cat.x = this.width * 2;
     cat.y = this.height/2;
     cat.scale.x = cat.scale.y = 1.2;
+    cat.visible = false;
     this.addChild(cat);
-
-    this.moveCat();
 
     new Between(-20, 20).time(580)
       .easing(Between.Easing.Cubic.InOut)
@@ -30,20 +29,29 @@ export default class JazzScene extends Scene {
       .on('update', (value) => {
         cat.angle = value
       });
+
+    setTimeout(() => this.moveCat(true), 7200);
   }
 
-  moveCat() {
+  moveCat(center) {
     var pos = { 
       x: cat.x + Math.random() * 600 - 300, 
       y: cat.y + Math.random() * 200 - 100,
       scale: 0.8 + Math.random() * 0.6
     };
 
-    if (pos.x < this.width * 0.1 || pos.x > this.width * 0.9) pos.x = cat.x;
-    if (pos.y < this.height * 0.3 || pos.y > this.height * 0.7) pos.y = cat.y;
+    if (center)
+    {
+      pos.x = this.width/2;
+      pos.y = this.height/2;
+    }
+    else {
+      if (pos.x < this.width * 0.1 || pos.x > this.width * 0.9) pos.x = cat.x;
+      if (pos.y < this.height * 0.3 || pos.y > this.height * 0.7) pos.y = cat.y;
+    }
 
     // https://github.com/sasha240100/between.js
-    new Between({ x: cat.x, y: cat.y, scale: cat.scale.x }, pos).time(1000)
+    new Between({ x: cat.x, y: cat.y, scale: cat.scale.x }, pos).time(center ? 4000 : 1000)
       .easing(Between.Easing.Cubic.InOut)
       .on('update', (value) => {
         cat.x = value.x;
@@ -53,6 +61,8 @@ export default class JazzScene extends Scene {
       .on('complete', (value) => {
         this.moveCat();
       });
+
+    cat.visible = true;
   }
 
 }
