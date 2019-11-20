@@ -2,7 +2,9 @@
 import * as PIXI from 'pixi.js';
 import {POLICY, Size, getScaledRect} from 'adaptive-scale/lib-esm';
 import {Howl, Howler} from 'howler';
+
 import Scene from './Scene.js';
+import JazzScene from './JazzScene.js';
 
 var song = new Howl({
   src: ['birthday.mp3'],
@@ -42,7 +44,7 @@ PIXI.Loader.shared
   .load(onAssetsLoaded)
 
 function onAssetsLoaded () {
-  scene = new Scene();
+  scene = new JazzScene();
   app.stage.addChild(scene);
   resize();
 }
