@@ -2,6 +2,8 @@ import * as PIXI from 'pixi.js';
 import Between from 'between.js';
 import Easing from 'easing-functions';
 
+import ScreenSize from './ScreenSize';
+
 let sprite = null;
 
 export default class TextDisplay extends PIXI.Container {
@@ -33,8 +35,8 @@ export default class TextDisplay extends PIXI.Container {
       scale: 0.8 + Math.random() * 0.6
     };
 
-    if (pos.x < window.innerWidth * 0.1 || pos.x > window.innerWidth * 0.9 || center) pos.x = window.innerWidth/2;
-    if (pos.y < window.innerHeight * 0.3 || pos.y > window.innerHeight * 0.7 || center) pos.y = window.innerHeight/2;
+    if (pos.x < window.innerWidth * 0.1 || pos.x > window.innerWidth * 0.9 || center) pos.x = ScreenSize.width/2;
+    if (pos.y < window.innerHeight * 0.3 || pos.y > window.innerHeight * 0.7 || center) pos.y = ScreenSize.height/2;
 
     // https://github.com/sasha240100/between.js
     new Between({ x: this.x, y: this.y, scale: sprite.scale.x }, pos).time(center ? 4000 : 1000)

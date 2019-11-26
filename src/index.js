@@ -3,9 +3,10 @@ import * as PIXI from 'pixi.js';
 import {POLICY, Size, getScaledRect} from 'adaptive-scale/lib-esm';
 import {Howl, Howler} from 'howler';
 
-import Scene from './Scene.js';
-import JazzScene from './JazzScene.js';
-import TextDisplay from './TextDisplay.js';
+import Scene from './Scene';
+import JazzScene from './JazzScene';
+import TextDisplay from './TextDisplay';
+import ScreenSize from './ScreenSize';
 
 var song = new Howl({
   src: ['birthday.mp3'],
@@ -38,6 +39,9 @@ const resize = () => {
   scene.y = rect.y;
   scene.width = rect.width;
   scene.height = rect.height;
+
+  ScreenSize.width = rect.width / scene.scale.x;
+  ScreenSize.height = rect.height / scene.scale.y;
 };
 
 window.addEventListener('resize', resize, false);

@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js';
 
-import Scene from './Scene.js';
-import SaxCat from './SaxCat.js';
+import Scene from './Scene';
+import SaxCat from './SaxCat';
 
 let saxcat = null;
 
