@@ -5,17 +5,19 @@ import {Howl, Howler} from 'howler';
 
 import Scene from './Scene.js';
 import JazzScene from './JazzScene.js';
+import TextDisplay from './TextDisplay.js';
 
 var song = new Howl({
   src: ['birthday.mp3'],
   loop: true
 });
 
-song.play();
+//song.play();
 var context = new AudioContext();
 context.resume();
 
 let scene = null;
+let td = null;
 
 const app = new PIXI.Application({ resizeTo: window });
 document.body.appendChild(app.view);
@@ -48,5 +50,7 @@ PIXI.Loader.shared
 function onAssetsLoaded () {
   scene = new JazzScene();
   app.stage.addChild(scene);
+  td = new TextDisplay();
+  app.stage.addChild(td);
   resize();
 }
