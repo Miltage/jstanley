@@ -43,8 +43,11 @@ const resize = () => {
 window.addEventListener('resize', resize, false);
 
 PIXI.Loader.shared
-  .add('cat.png')
+  .add('saxcat.png')
   .add('jazzbar.jpg')
+  .add('dancing_cat1.png')
+  .add('dancing_cat2.png')
+  .add('dancing_cat3.png')
   .load(onAssetsLoaded)
 
 function onAssetsLoaded () {
