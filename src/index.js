@@ -34,10 +34,10 @@ const resize = () => {
   };
 
   let rect = getScaledRect(options);
-  app.stage.x = rect.x;
-  app.stage.y = rect.y;
-  app.stage.width = rect.width;
-  app.stage.height = rect.height;
+  scene.x = rect.x;
+  scene.y = rect.y;
+  scene.width = rect.width;
+  scene.height = rect.height;
 };
 
 window.addEventListener('resize', resize, false);
