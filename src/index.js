@@ -60,4 +60,5 @@ function onAssetsLoaded () {
   td = new TextDisplay();
   app.stage.addChild(td);
   resize();
+  scene.init();
 }

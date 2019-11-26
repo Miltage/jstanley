@@ -60,13 +60,13 @@ export default class TextDisplay extends PIXI.Container {
     text.x = window.innerWidth/2;
     text.y = window.innerHeight/2;
 
-    new Between(0, 1).time(500)
-      .easing(Between.Easing.Cubic.InOut)
+    new Between(0, 1).time(700)
+      .easing(Between.Easing.Elastic.Out)
       .on('update', (value) => {
         text.scale.x = text.scale.y = value;
       })
       .on('complete', (value) => {
-        setTimeout(() => this.nextLine(), 1200 + line.length * 140);
+        setTimeout(() => this.nextLine(), 800 + line.length * 140);
       });
   }
 
