@@ -45,6 +45,7 @@ export default class TextDisplay extends PIXI.Container {
       .on('update', (value) => {
         this.x = value.x;
         this.y = value.y;
+        this.zIndex = value.y;
         sprite.scale.x = sprite.scale.y = value.scale;
       })
       .on('complete', (value) => {

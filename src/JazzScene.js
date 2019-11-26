@@ -17,7 +17,6 @@ export default class JazzScene extends Scene {
   }
 
   init() {
-
     this.addChild(new DanceCat({ file: "dancing_cat1" }));
     this.addChild(new DanceCat({ file: "dancing_cat2" }));
     this.addChild(new DanceCat({ file: "dancing_cat3" }));

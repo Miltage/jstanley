@@ -14,6 +14,7 @@ export default class TextDisplay extends PIXI.Container {
     sprite = PIXI.Sprite.from('saxcat.png');
     sprite.anchor.set(0.5);
     sprite.scale.x = sprite.scale.y = 1.2;
+    this.zIndex = 9000;
     this.addChild(sprite);
 
     new Between(-20, 20).time(580)

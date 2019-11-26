@@ -61,4 +61,8 @@ function onAssetsLoaded () {
   app.stage.addChild(td);
   resize();
   scene.init();
+
+  PIXI.Ticker.shared.add(function (time) {
+    scene.sortChildren();
+  });
 }
