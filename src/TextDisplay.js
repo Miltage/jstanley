@@ -14,9 +14,9 @@ let lines = [
   "THAT'S\nRIGHT",
   "YOURS",
   "I SAID\nYOURS!",
-  "AND NO ONE ELSES",
+  "AND NO ONE ELSE'S",
   "···",
-  "OKAY MAYBE\nSOMEONE ELSES",
+  "OKAY MAYBE\nSOMEONE ELSE'S",
   "I MEAN,\nLET'S BE REAL",
   "THERE'S PROBABLY\nOTHER PEOPLE THAT\nSHARE YOUR BIRTHDAY",
   "BUT STILL",
@@ -77,5 +77,9 @@ export default class TextDisplay extends PIXI.Container {
       return;
 
     this.setText(lines[index]);
+  }
+
+  resize() {
+    
   }
 }
