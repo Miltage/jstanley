@@ -40,7 +40,7 @@ export default class TextDisplay extends PIXI.Container {
     if (pos.y < ScreenSize.height * 0.3 || pos.y > ScreenSize.height * 0.7 || center) pos.y = ScreenSize.height/2;
 
     // https://github.com/sasha240100/between.js
-    new Between({ x: this.x, y: this.y, scale: sprite.scale.x }, pos).time(center ? 4000 : 1000)
+    new Between({ x: this.x, y: this.y, scale: sprite.scale.x }, pos).time(center ? 2500 : 1000)
       .easing(Between.Easing.Cubic.InOut)
       .on('update', (value) => {
         this.x = value.x;

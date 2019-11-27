@@ -1,30 +1,62 @@
 import * as PIXI from 'pixi.js';
+import Between from 'between.js';
+import Easing from 'easing-functions';
 
 import Scene from './Scene';
 import SaxCat from './SaxCat';
 import DanceCat from './DanceCat';
 
 let saxcat = null;
+let jazzbar = null;
+let club = null;
 
 export default class JazzScene extends Scene {
 
   constructor(props) {
     super(props);
 
-    let texture = PIXI.Texture.from('jazzbar.jpg');
-    let bg = PIXI.Sprite.from(texture);
-    this.addChild(bg);
+    jazzbar = PIXI.Sprite.from(PIXI.Texture.from('jazzbar.jpg'));
+    this.addChild(jazzbar);
+
+    club = PIXI.Sprite.from(PIXI.Texture.from('dancefloor.jpg'));
+    club.visible = false;
+    this.addChild(club);
   }
 
   init() {
-    this.addChild(new DanceCat({ file: "dancing_cat1" }));
-    this.addChild(new DanceCat({ file: "dancing_cat2" }));
-    this.addChild(new DanceCat({ file: "dancing_cat3" }));
-
     let saxcat = new SaxCat();
     saxcat.x = this.width * 2;
     saxcat.y = this.height/2;
     this.addChild(saxcat);
+  }
+
+  trigger(index) {
+    if (index == 18) {
+      this.transition(jazzbar, club, () => {
+        this.addChild(new DanceCat({ file: "dancing_cat1" }));
+        this.addChild(new DanceCat({ file: "dancing_cat2" }));
+        this.addChild(new DanceCat({ file: "dancing_cat3" }));
+      });
+    }
+  }
+
+  transition(frame1, frame2, callback) {
+    let time = 500;
+    new Between(1, 0).time(time)
+      .easing(Between.Easing.Cubic.InOut)
+      .on('update', (value) => {
+        frame1.alpha = value;
+      })
+      .on('complete', (value) => {
+        frame1.visible = false;
+        frame2.visible = true;
+        new Between(0, 1).time(time)
+          .easing(Between.Easing.Cubic.InOut)
+          .on('update', (value) => {
+            frame2.alpha = value;
+          })
+          .on('complete', callback);
+      });
   }
 
 }

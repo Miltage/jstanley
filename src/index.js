@@ -8,12 +8,15 @@ import JazzScene from './JazzScene';
 import TextDisplay from './TextDisplay';
 import ScreenSize from './ScreenSize';
 
-var song = new Howl({
-  src: ['birthday.mp3'],
-  loop: true
+var jazz_song = new Howl({
+  src: ['birthday.mp3']
 });
 
-//song.play();
+var party_song = new Howl({
+  src: ['party.mp3']
+});
+
+jazz_song.play();
 var context = new AudioContext();
 context.resume();
 
@@ -52,12 +55,22 @@ PIXI.Loader.shared
   .add('dancing_cat1.png')
   .add('dancing_cat2.png')
   .add('dancing_cat3.png')
+  .add('dancefloor.jpg')
+  .add('birthday.mp3')
+  .add('party.mp3')
   .load(onAssetsLoaded)
 
 function onAssetsLoaded () {
   scene = new JazzScene();
   app.stage.addChild(scene);
-  td = new TextDisplay();
+  td = new TextDisplay((index) => {
+    scene.trigger(index);
+
+    if (index == 19) {
+      jazz_song.stop();
+      party_song.play();
+    }
+  });
   app.stage.addChild(td);
   resize();
   scene.init();

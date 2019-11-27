@@ -3,7 +3,8 @@ import Between from 'between.js';
 import Easing from 'easing-functions';
 
 let text = null;
-let index = 0;
+let index = 15;
+let trigger = null;
 
 let lines = [
   "HEY THERE",
@@ -21,13 +22,19 @@ let lines = [
   "THERE'S PROBABLY\nOTHER PEOPLE THAT\nSHARE YOUR BIRTHDAY",
   "BUT STILL",
   "IT'S YOURS AND\nIT'S SPECIAL",
-  "BECAUSE YOU'RE\nSPECIAL!"
+  "BECAUSE YOU'RE\nSPECIAL!",
+  "HOPE YOU'RE ENJOYING SAX CAT",
+  "I KNOW YOU\nLIKE CATS",
+  "SO HERE'S A FEW MORE!",
+  "PARTY TIME"
 ];
 
 export default class TextDisplay extends PIXI.Container {
 
-  constructor(props) {
-    super(props);
+  constructor(callback) {
+    super();
+
+    trigger = callback;
 
     text = new PIXI.Text('Example', {
       fontFamily: 'Impact',
@@ -66,7 +73,7 @@ export default class TextDisplay extends PIXI.Container {
         text.scale.x = text.scale.y = value;
       })
       .on('complete', (value) => {
-        setTimeout(() => this.nextLine(), 800 + line.length * 140);
+        setTimeout(() => this.nextLine(), 500 + line.length * 100);
       });
   }
 
@@ -75,6 +82,8 @@ export default class TextDisplay extends PIXI.Container {
 
     if (index >= lines.length)
       return;
+
+    trigger(index);
 
     this.setText(lines[index]);
   }
