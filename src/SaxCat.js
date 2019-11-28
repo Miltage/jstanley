@@ -6,7 +6,7 @@ import ScreenSize from './ScreenSize';
 
 let sprite = null;
 
-export default class TextDisplay extends PIXI.Container {
+export default class SaxCat extends PIXI.Container {
 
   constructor(props) {
     super(props);

@@ -58,6 +58,7 @@ PIXI.Loader.shared
   .add('dancefloor.jpg')
   .add('birthday.mp3')
   .add('party.mp3')
+  .add('discoball.png')
   .load(onAssetsLoaded)
 
 function onAssetsLoaded () {

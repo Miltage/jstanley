@@ -5,10 +5,12 @@ import Easing from 'easing-functions';
 import Scene from './Scene';
 import SaxCat from './SaxCat';
 import DanceCat from './DanceCat';
+import DiscoBall from './DiscoBall';
 
 let saxcat = null;
 let jazzbar = null;
 let club = null;
+let discoball = null;
 
 export default class JazzScene extends Scene {
 
@@ -21,6 +23,9 @@ export default class JazzScene extends Scene {
     club = PIXI.Sprite.from(PIXI.Texture.from('dancefloor.jpg'));
     club.visible = false;
     this.addChild(club);
+
+    discoball = new DiscoBall();
+    this.addChild(discoball);
   }
 
   init() {
