@@ -25,17 +25,29 @@ export default class DiscoBall extends PIXI.Container {
         this.angle = value;
       });
 
+    new Between(1, 1.2).time(1000)
+      .easing(Between.Easing.Elastic.InOut)
+      .loop('bounce')
+      .on('update', (value) => {
+        sprite.scale.x = value;
+        sprite.scale.y = value;
+      })
 
+    this.flip();
+    this.visible = false;
   }
 
   flip() {
-    new Between(this.scale.x, -this.scale.x).time(300)
+    this.scale.x = -this.scale.x;
+    setTimeout(() => this.flip(), 1200);
+  }
+
+  drop() {
+    this.visible = true;
+    new Between(-400, ScreenSize.height * 0.25).time(800)
       .easing(Between.Easing.Bounce.Out)
       .on('update', (value) => {
-        this.scale.x = value;
-      })
-      .on('complete', (value) => {
-        setTimeout(() => this.flip(), 2000 + Math.random() * 1000);
+        this.y = value;
       });
   }
 }

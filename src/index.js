@@ -34,7 +34,7 @@ const resize = () => {
   let options = {
     container: new Size(window.innerWidth, window.innerHeight),
     target: new Size(logicalWidth, logicalHeight),
-    policy: POLICY.NoBorder, // null | ExactFit | NoBorder | FullHeight | FullWidth | ShowAll
+    policy: POLICY.FullWidth, // null | ExactFit | NoBorder | FullHeight | FullWidth | ShowAll
   };
 
   let rect = getScaledRect(options);
@@ -42,6 +42,7 @@ const resize = () => {
   scene.y = rect.y;
   scene.width = rect.width;
   scene.height = rect.height;
+  scene.resize();
 
   ScreenSize.width = rect.width / scene.scale.x;
   ScreenSize.height = rect.height / scene.scale.y;

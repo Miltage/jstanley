@@ -6,6 +6,7 @@ import Scene from './Scene';
 import SaxCat from './SaxCat';
 import DanceCat from './DanceCat';
 import DiscoBall from './DiscoBall';
+import ScreenSize from './ScreenSize';
 
 let saxcat = null;
 let jazzbar = null;
@@ -30,17 +31,26 @@ export default class JazzScene extends Scene {
 
   init() {
     let saxcat = new SaxCat();
-    saxcat.x = this.width * 2;
+    saxcat.x = this.width * 4;
     saxcat.y = this.height/2;
     this.addChild(saxcat);
+
+    discoball.x = ScreenSize.width/2;
+  }
+
+  resize() {
+    discoball.x = ScreenSize.width/2;
   }
 
   trigger(index) {
     if (index == 18) {
+      this.addChild(new DanceCat({ file: "dancing_cat1" }));
+      this.addChild(new DanceCat({ file: "dancing_cat2" }));
+      this.addChild(new DanceCat({ file: "dancing_cat3" }));
+    }
+    else if (index == 19) {
       this.transition(jazzbar, club, () => {
-        this.addChild(new DanceCat({ file: "dancing_cat1" }));
-        this.addChild(new DanceCat({ file: "dancing_cat2" }));
-        this.addChild(new DanceCat({ file: "dancing_cat3" }));
+        discoball.drop();
       });
     }
   }
