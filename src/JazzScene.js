@@ -10,7 +10,7 @@ import ScreenSize from './ScreenSize';
 
 let saxcat;
 let jazzbar;
-let club;
+let club, hotel;
 let discoball;
 let dance_cat1, dance_cat2, dance_cat3;
 
@@ -26,6 +26,10 @@ export default class JazzScene extends Scene {
     club.visible = false;
     this.addChild(club);
 
+    hotel = PIXI.Sprite.from(PIXI.Texture.from('hotel.jpg'));
+    hotel.visible = false;
+    this.addChild(hotel);
+
     discoball = new DiscoBall();
     this.addChild(discoball);
   }
@@ -39,8 +43,11 @@ export default class JazzScene extends Scene {
     discoball.x = ScreenSize.width/2;
   }
 
-  resize() {
-    discoball.x = ScreenSize.width/2;
+  resize(bounds) {
+    discoball.x = ScreenSize.width/2;    
+    jazzbar.scale.x = jazzbar.scale.y = (bounds.width / jazzbar.width);
+    club.scale.x = club.scale.y = (bounds.width / club.width);
+    hotel.scale.x = hotel.scale.y = (bounds.width / hotel.width);
   }
 
   trigger(index) {
@@ -64,6 +71,9 @@ export default class JazzScene extends Scene {
       dance_cat3.leave();
       saxcat.leave();
       discoball.raise();
+    }
+    else if (index == 39) {
+      this.transition(club, hotel, () => {});
     }
   }
 

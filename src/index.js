@@ -44,9 +44,9 @@ const resize = () => {
   let rect = getScaledRect(options);
   scene.x = rect.x;
   scene.y = rect.y;
-  scene.width = rect.width;
-  scene.height = rect.height;
-  scene.resize();
+  //scene.width = rect.width;
+  //scene.height = rect.height;
+  scene.resize(rect);
 
   ScreenSize.width = rect.width / scene.scale.x;
   ScreenSize.height = rect.height / scene.scale.y;
@@ -65,6 +65,7 @@ PIXI.Loader.shared
   .add('party.mp3')
   .add('discoball.png')
   .add('bossanova.mp3')
+  .add('hotel.jpg')
   .load(onAssetsLoaded)
 
 function onAssetsLoaded () {
