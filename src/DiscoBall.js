@@ -50,4 +50,13 @@ export default class DiscoBall extends PIXI.Container {
         this.y = value;
       });
   }
+
+  raise() {
+    new Between(this.y, -400).time(800)
+      .easing(Between.Easing.Bounce.In)
+      .on('update', (value) => {
+        this.y = value;
+      })
+      .on('complete', () => { this.visible = false; });
+  }
 }

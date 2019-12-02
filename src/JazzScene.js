@@ -8,10 +8,11 @@ import DanceCat from './DanceCat';
 import DiscoBall from './DiscoBall';
 import ScreenSize from './ScreenSize';
 
-let saxcat = null;
-let jazzbar = null;
-let club = null;
-let discoball = null;
+let saxcat;
+let jazzbar;
+let club;
+let discoball;
+let dance_cat1, dance_cat2, dance_cat3;
 
 export default class JazzScene extends Scene {
 
@@ -30,7 +31,7 @@ export default class JazzScene extends Scene {
   }
 
   init() {
-    let saxcat = new SaxCat();
+    saxcat = new SaxCat();
     saxcat.x = this.width * 4;
     saxcat.y = this.height/2;
     this.addChild(saxcat);
@@ -43,15 +44,26 @@ export default class JazzScene extends Scene {
   }
 
   trigger(index) {
-    if (index == 18) {
-      this.addChild(new DanceCat({ file: "dancing_cat1" }));
-      this.addChild(new DanceCat({ file: "dancing_cat2" }));
-      this.addChild(new DanceCat({ file: "dancing_cat3" }));
+    if (index == 20) {
+      dance_cat1 = new DanceCat({ file: "dancing_cat1" });
+      dance_cat2 = new DanceCat({ file: "dancing_cat2" });
+      dance_cat3 = new DanceCat({ file: "dancing_cat3" });
+      this.addChild(dance_cat1);
+      this.addChild(dance_cat2);
+      this.addChild(dance_cat3);
     }
-    else if (index == 19) {
-      this.transition(jazzbar, club, () => {
-        discoball.drop();
-      });
+    else if (index == 21) {
+      this.transition(jazzbar, club, () => {});
+    }
+    else if (index == 22) {
+      discoball.drop();
+    }
+    else if (index == 30) {
+      dance_cat1.leave();
+      dance_cat2.leave();
+      dance_cat3.leave();
+      saxcat.leave();
+      discoball.raise();
     }
   }
 

@@ -24,9 +24,21 @@ let lines = [
   "IT'S YOURS AND\nIT'S SPECIAL",
   "BECAUSE YOU'RE\nSPECIAL!",
   "HOPE YOU'RE ENJOYING SAX CAT",
+  "HE LEARNT THIS WHOLE\nSONG JUST FOR YOU",
+  "TOOK HIM AGES",
   "I KNOW YOU\nLIKE CATS",
   "SO HERE'S A FEW MORE!",
-  "PARTY TIME"
+  "",
+  "PARTY TIME!",
+  "", "", "",
+  "JUST LOOK AT 'EM GO",
+  "", "", "",
+  "OKAY, ENOUGH OF THAT",
+  "BACK TO BUSINESS",
+  "IT'S YOUR BIRTHDAY WEEKEND",
+  "AND THAT MEANS SPOILS",
+  "SO PACK YOUR\nBAGS, GIRL",
+  "'CAUSE WE'RE GOING\nTO HERMANUS!"
 ];
 
 export default class TextDisplay extends PIXI.Container {
@@ -58,11 +70,14 @@ export default class TextDisplay extends PIXI.Container {
     text.style.fontSize = 250;
     text.visible = true;
 
-    while (text.width < window.innerWidth * 0.8 && text.height < window.innerHeight * 0.75)
-      text.style.fontSize += 10;
+    if (line.length > 0)
+    {
+      while (text.width < window.innerWidth * 0.8 && text.height < window.innerHeight * 0.75)
+        text.style.fontSize += 10;
 
-    while (text.width > window.innerWidth * 0.8 || text.height > window.innerHeight * 0.75)
-      text.style.fontSize -= 10;
+      while (text.width > window.innerWidth * 0.8 || text.height > window.innerHeight * 0.75)
+        text.style.fontSize -= 10;
+    }
 
     text.x = window.innerWidth/2;
     text.y = window.innerHeight/2;

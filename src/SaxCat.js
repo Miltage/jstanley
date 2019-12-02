@@ -4,7 +4,8 @@ import Easing from 'easing-functions';
 
 import ScreenSize from './ScreenSize';
 
-let sprite = null;
+let sprite;
+let playing = true;
 
 export default class SaxCat extends PIXI.Container {
 
@@ -48,9 +49,27 @@ export default class SaxCat extends PIXI.Container {
         sprite.scale.x = sprite.scale.y = value.scale;
       })
       .on('complete', (value) => {
-        this.move();
+        if (playing)
+          this.move();
       });
 
     this.visible = true;
+  }
+
+  leave() {
+    playing = false;
+    let angle = Math.random() * Math.PI;
+    var d = 1400;
+    var pos = { x: ScreenSize.width/2 + Math.cos(angle) * d, y: ScreenSize.height/2 + Math.sin(angle) * d };
+
+    new Between({ x: this.x, y: this.y }, pos).time(1000)
+      .easing(Between.Easing.Cubic.InOut)
+      .on('update', (value) => {
+        this.x = value.x;
+        this.y = value.y;
+        this.zIndex = value.y;
+      })
+      .on('complete', (value) => {
+      });
   }
 }

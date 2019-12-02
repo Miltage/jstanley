@@ -68,9 +68,12 @@ function onAssetsLoaded () {
   td = new TextDisplay((index) => {
     scene.trigger(index);
 
-    if (index == 19) {
+    if (index == 21) {
       jazz_song.stop();
       party_song.play();
+    }
+    else if (index == 30) {
+      party_song.stop();
     }
   });
   app.stage.addChild(td);
