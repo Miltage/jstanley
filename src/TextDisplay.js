@@ -3,7 +3,7 @@ import Between from 'between.js';
 import Easing from 'easing-functions';
 
 let text = null;
-let index = 15;
+let index = 0;
 let trigger = null;
 
 let lines = [
@@ -42,7 +42,9 @@ let lines = [
   "IT'S YOUR BIRTHDAY WEEKEND",
   "AND THAT MEANS SPOILS",
   "SO PACK YOUR\nBAGS, GIRL",
-  "'CAUSE WE'RE GOING\nTO HERMANUS!"
+  "'CAUSE WE'RE GOING\nTO HERMANUS!",
+  "",
+  "HAPPY\nBIRTHDAY"
 ];
 
 export default class TextDisplay extends PIXI.Container {

@@ -34,7 +34,7 @@ export default class SaxCat extends PIXI.Container {
     var pos = { 
       x: this.x + Math.random() * 600 - 300, 
       y: this.y + Math.random() * 200 - 100,
-      scale: 0.8 + Math.random() * 0.6
+      scale: 0.6 + Math.random() * 0.4
     };
 
     if (pos.x < ScreenSize.width * 0.1 || pos.x > ScreenSize.width * 0.9 || center) pos.x = ScreenSize.width/2;
