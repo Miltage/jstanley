@@ -71,6 +71,7 @@ PIXI.Loader.shared
   .add('bossanova.mp3')
   .add('recordscratch.mp3')
   .add('hotel.jpg')
+  .add('clouds.jpg')
   .load(onAssetsLoaded)
 
 function onAssetsLoaded () {

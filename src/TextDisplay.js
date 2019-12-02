@@ -70,18 +70,21 @@ export default class TextDisplay extends PIXI.Container {
   }
 
   setText(line) {
+    if (line.length == 0)
+    {
+      setTimeout(() => this.nextLine(), 1000);
+      return;
+    }
+
     text.text = line;
     text.style.fontSize = 250;
     text.visible = true;
 
-    if (line.length > 0)
-    {
-      while (text.width < window.innerWidth * 0.8 && text.height < window.innerHeight * 0.75)
-        text.style.fontSize += 10;
+    while (text.width < window.innerWidth * 0.8 && text.height < window.innerHeight * 0.75)
+      text.style.fontSize += 10;
 
-      while (text.width > window.innerWidth * 0.8 || text.height > window.innerHeight * 0.75)
-        text.style.fontSize -= 10;
-    }
+    while (text.width > window.innerWidth * 0.8 || text.height > window.innerHeight * 0.75)
+      text.style.fontSize -= 10;
 
     text.x = window.innerWidth/2;
     text.y = window.innerHeight/2;
