@@ -70,6 +70,7 @@ export default class SaxCat extends PIXI.Container {
         this.zIndex = value.y;
       })
       .on('complete', (value) => {
+        this.visible = false;
       });
   }
 }

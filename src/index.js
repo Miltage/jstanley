@@ -8,12 +8,16 @@ import JazzScene from './JazzScene';
 import TextDisplay from './TextDisplay';
 import ScreenSize from './ScreenSize';
 
-var jazz_song = new Howl({
+let jazz_song = new Howl({
   src: ['birthday.mp3']
 });
 
-var party_song = new Howl({
+let party_song = new Howl({
   src: ['party.mp3']
+});
+
+let bossa_nova_song = new Howl({
+  src: ['bossanova.mp3']
 });
 
 jazz_song.play();
@@ -60,6 +64,7 @@ PIXI.Loader.shared
   .add('birthday.mp3')
   .add('party.mp3')
   .add('discoball.png')
+  .add('bossanova.mp3')
   .load(onAssetsLoaded)
 
 function onAssetsLoaded () {
@@ -74,6 +79,9 @@ function onAssetsLoaded () {
     }
     else if (index == 30) {
       party_song.stop();
+    }
+    else if (index == 31) {
+      bossa_nova_song.play();
     }
   });
   app.stage.addChild(td);

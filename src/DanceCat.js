@@ -88,6 +88,7 @@ export default class DanceCat extends PIXI.Container {
         this.zIndex = value.y;
       })
       .on('complete', (value) => {
+        this.visible = false;
       });
   }
 }
