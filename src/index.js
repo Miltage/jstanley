@@ -20,6 +20,10 @@ let bossa_nova_song = new Howl({
   src: ['bossanova.mp3']
 });
 
+let record_scratch = new Howl({
+  src: ['recordscratch.mp3']
+});
+
 jazz_song.play();
 var context = new AudioContext();
 context.resume();
@@ -65,6 +69,7 @@ PIXI.Loader.shared
   .add('party.mp3')
   .add('discoball.png')
   .add('bossanova.mp3')
+  .add('recordscratch.mp3')
   .add('hotel.jpg')
   .load(onAssetsLoaded)
 
@@ -80,6 +85,7 @@ function onAssetsLoaded () {
     }
     else if (index == 30) {
       party_song.stop();
+      record_scratch.play();
     }
     else if (index == 31) {
       bossa_nova_song.play();
