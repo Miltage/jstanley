@@ -76,7 +76,7 @@ export default class JazzScene extends Scene {
       saxcat.leave();
       discoball.raise();
     }
-    else if (index == 32) {
+    else if (index == 31) {
       this.transition(club, clouds, () => {});
     }
     else if (index == 39) {

@@ -57,10 +57,10 @@ export default class TextDisplay extends PIXI.Container {
       fill: 0xffffff, 
       align: 'center', 
       dropShadow: true, 
-      dropShadowDistance: 10, 
-      dropShadowAlpha: 0.9,
+      dropShadowDistance: 7, 
+      dropShadowAlpha: 0.75,
       dropShadowAngle: Math.PI/2,
-      dropShadowBlur: 20
+      dropShadowBlur: 10
     });
     text.anchor.set(0.5);
     text.visible = false;
