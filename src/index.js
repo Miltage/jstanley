@@ -103,6 +103,7 @@ function onAssetsLoaded () {
 
 const start = () => {
   started = true;
+  text.visible = false;
   scene = new JazzScene();
   app.stage.addChild(scene);
   td = new TextDisplay((index) => {
