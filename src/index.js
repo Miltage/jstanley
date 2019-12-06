@@ -6,6 +6,7 @@ import {Howl, Howler} from 'howler';
 import Scene from './Scene';
 import JazzScene from './JazzScene';
 import TextDisplay from './TextDisplay';
+import Confetti from './Confetti';
 import ScreenSize from './ScreenSize';
 
 let jazz_song = new Howl({
@@ -26,6 +27,7 @@ let record_scratch = new Howl({
 
 let scene = null;
 let td = null;
+let confetti = null;
 
 const app = new PIXI.Application({ resizeTo: window });
 document.body.appendChild(app.view);
@@ -55,6 +57,9 @@ let started = false;
 
 const resize = () => {
 
+  if (scene == null)
+    return;
+
   let options = {
     container: new Size(window.innerWidth, window.innerHeight),
     target: new Size(logicalWidth, logicalHeight),
@@ -64,8 +69,6 @@ const resize = () => {
   let rect = getScaledRect(options);
   scene.x = rect.x;
   scene.y = rect.y;
-  //scene.width = rect.width;
-  //scene.height = rect.height;
   scene.resize(rect);
 
   ScreenSize.width = rect.width / scene.scale.x;
@@ -116,6 +119,9 @@ const start = () => {
     else if (index == 31) {
       bossa_nova_song.play();
     }
+    else if (index == 40) {
+      confetti.start();
+    }
   });
   app.stage.addChild(td);
   resize();
@@ -124,6 +130,9 @@ const start = () => {
   PIXI.Ticker.shared.add(function (time) {
     scene.sortChildren();
   });
+
+  confetti = new Confetti();
+  app.stage.addChild(confetti);
   
   jazz_song.play();
   var context = new AudioContext();
