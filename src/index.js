@@ -24,10 +24,6 @@ let record_scratch = new Howl({
   src: ['recordscratch.mp3']
 });
 
-jazz_song.play();
-var context = new AudioContext();
-context.resume();
-
 let scene = null;
 let td = null;
 
@@ -36,6 +32,26 @@ document.body.appendChild(app.view);
 
 const logicalWidth = 1024;
 const logicalHeight = 680;
+
+let text = new PIXI.Text('Loading...',
+  {
+    fontFamily: 'Georgia',
+    fill: 0xffffff, 
+    align: 'center'
+  });
+text.x = window.innerWidth/2 - text.width/2;
+text.y = window.innerHeight/2 - text.height/2;
+app.stage.addChild(text);
+
+let input = new PIXI.Graphics();
+input.clear();
+input.beginFill(0xff0000, 1);
+input.drawRect(0, 0, window.innerWidth, window.innerHeight);
+input.interactive = true;
+input.alpha = 0;
+app.stage.addChild(input);
+
+let started = false;
 
 const resize = () => {
 
@@ -72,9 +88,18 @@ PIXI.Loader.shared
   .add('recordscratch.mp3')
   .add('hotel.jpg')
   .add('clouds.jpg')
-  .load(onAssetsLoaded)
+  .load(onAssetsLoaded);
 
 function onAssetsLoaded () {
+  text.text = "Click to start";
+  input.click = (event) => {
+    if (!started)
+      start();
+  }
+}
+
+const start = () => {
+  started = true;
   scene = new JazzScene();
   app.stage.addChild(scene);
   td = new TextDisplay((index) => {
@@ -99,4 +124,8 @@ function onAssetsLoaded () {
   PIXI.Ticker.shared.add(function (time) {
     scene.sortChildren();
   });
+  
+  jazz_song.play();
+  var context = new AudioContext();
+  context.resume();
 }
