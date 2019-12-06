@@ -10,7 +10,7 @@ import ScreenSize from './ScreenSize';
 
 let saxcat;
 let jazzbar, clouds, club, hotel;
-let discoball;
+let discoball, lights1, lights2;
 let dance_cat1, dance_cat2, dance_cat3;
 
 export default class JazzScene extends Scene {
@@ -68,6 +68,7 @@ export default class JazzScene extends Scene {
     }
     else if (index == 22) {
       discoball.drop();
+      this.lights();
     }
     else if (index == 30) {
       dance_cat1.leave();
@@ -75,6 +76,8 @@ export default class JazzScene extends Scene {
       dance_cat3.leave();
       saxcat.leave();
       discoball.raise();
+      this.removeChild(lights1);
+      this.removeChild(lights2);
     }
     else if (index == 31) {
       this.transition(club, clouds, () => {});
@@ -100,6 +103,34 @@ export default class JazzScene extends Scene {
             frame2.alpha = value;
           })
           .on('complete', callback);
+      });
+  }
+
+  lights() {
+    lights1 = new PIXI.Graphics();
+    lights1.beginFill(0xd62196, 0.5);
+    lights1.drawRect(0, 0, ScreenSize.width, ScreenSize.height);
+    lights1.zIndex = 9999;
+    this.addChild(lights1);
+
+    new Between(1, 0).time(400)
+      .easing(Between.Easing.Cubic.InOut)
+      .loop('bounce')
+      .on('update', (value) => {
+        lights1.alpha = value;
+      });
+
+    lights2 = new PIXI.Graphics();
+    lights2.beginFill(0x57007e, 0.5);
+    lights2.drawRect(0, 0, ScreenSize.width, ScreenSize.height);
+    lights2.zIndex = 9999;
+    this.addChild(lights2);
+
+    new Between(0, 1).time(400)
+      .easing(Between.Easing.Cubic.InOut)
+      .loop('bounce')
+      .on('update', (value) => {
+        lights2.alpha = value;
       });
   }
 
