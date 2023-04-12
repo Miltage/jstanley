@@ -54,10 +54,18 @@
       }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>      
+      document.addEventListener('click', function() {
+        const video = document.getElementById('bg-video');
+        if (video.paused) {
+          video.play();
+        }
+      });
+    </script>
   </head>
   <body>
     <div id="preload"></div>
-    <video src="video.mp4" autoplay loop muted></video>
+    <video id="bg-video" src="video.mp4" autoplay loop muted></video>
     <div id="info">
       <h2>Jessica Stanley</h2>
       <p>Film / theatre actor</p>
